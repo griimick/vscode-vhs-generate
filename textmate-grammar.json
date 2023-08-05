@@ -1,0 +1,130 @@
+{
+    "name": "VHS",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#json"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#require"
+        },
+        {
+            "include": "#output"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#control"
+        },
+        {
+            "include": "#commands"
+        },
+        {
+            "include": "#settings"
+        },
+        {
+            "include": "#units"
+        },
+        {
+            "include": "#numbers"
+        }
+    ],
+    "repository": {
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.vhs",
+                    "match": "@|\\+"
+                }
+            ]
+        },
+        "require": {
+            "name": "keyword.control.vhs",
+            "match": "Require ([\\.\\-/A-Za-z0-9%]+)",
+            "captures": {
+                "1": {
+                    "name": "string.quoted.other.vhs"
+                }
+            }
+        },
+        "output": {
+            "name": "keyword.control.vhs",
+            "match": "Output ([\\.\\-/A-Za-z0-9%]+)",
+            "captures": {
+                "1": {
+                    "name": "string.quoted.other.vhs"
+                }
+            }
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.vhs",
+                    "match": "\\d*\\.?\\d+"
+                }
+            ]
+        },
+        "units": {
+            "match": "(\\d*\\.?\\d+)(ms|s)",
+            "captures": {
+                "1": {
+                    "patterns": [
+                        {
+                            "include": "#numbers"
+                        }
+                    ]
+                },
+                "2": {
+                    "name": "keyword.other.unit.vhs"
+                }
+            }
+        },
+        "json": {
+            "name": "string.quoted.other.vhs",
+            "match": "\\{.*\\}"
+        },
+        "control": {
+            "name": "keyword.control.vhs",
+            "match": "\\bCtrl\\+[A-Z]\\b"
+        },
+        "settings": {
+            "name": "entity.name.tag.vhs",
+            "match": "\\b(FontFamily|FontSize|LoopOffset|Shell|Height|Width|Theme|Padding|TypingSpeed|PlaybackSpeed|LineHeight|Framerate|LetterSpacing|Margin|MarginFill|WindowBar|WindowBarSize|BorderRadius)\\b"
+        },
+        "comments": {
+            "begin": "#",
+            "end": "$",
+            "name": "comment.line.number-sign.vhs"
+        },
+        "commands": {
+            "name": "keyword.control.vhs",
+            "match": "\\b(Output|Set|Type|Left|Right|Up|Down|Ctrl|Backspace|Enter|Tab|Space|Sleep|Hide|Show|Escape|Require)\\b"
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.single.vhs",
+                    "begin": "'",
+                    "end": "'"
+                },
+                {
+                    "name": "string.quoted.double.vhs",
+                    "begin": "\"",
+                    "end": "\""
+                },
+                {
+                    "name": "string.quoted.other.vhs",
+                    "begin": "`",
+                    "end": "`"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.vhs"
+}
