@@ -1,4 +1,3 @@
-const { grammar } = require('./index.js');
 module.exports = grammar({
   name: 'vhs',
   rules: {
