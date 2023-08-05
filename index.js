@@ -1,14 +1,11 @@
 const fs = require("fs/promises");
-const EleventyFetch = require("@11ty/eleventy-fetch");
 
 async function setup(file) {
-    const grammar = await EleventyFetch(
-        "https://raw.githubusercontent.com/charmbracelet/tree-sitter-vhs/main/grammar.js",
-        {
-            duration: "1d",
-            type: "text",
-        }
-    );
+    const grammar = (
+        await fetch(
+            "https://raw.githubusercontent.com/charmbracelet/tree-sitter-vhs/main/grammar.js"
+        )
+    ).text();
     const content = "const { grammar } = require('./index.js');\n";
     try {
         if (await fs.access(`./${file}`)) await fs.rm(`./${file}`);
